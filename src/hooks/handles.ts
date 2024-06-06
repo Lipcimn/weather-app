@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-
+import { City } from "../types/City";
 /**
  * Handles the input confirmation for a city name. it calls `cityValidation` if the input is not empty and the `Enter` key is pressed.
  *
@@ -13,7 +13,7 @@ import axios from "axios";
 const cityNameInputConfirmation = (
   event: React.KeyboardEvent<HTMLDivElement>,
   name: string
-) => {
+): void => {
   if (event.key === "Enter") {
     if (name.trim() != "") {
       cityValidation(name);
@@ -21,14 +21,22 @@ const cityNameInputConfirmation = (
   }
 };
 
-const cityValidation = async (name: string) => {
+/**
+ * Validates a city name by making a POST request to the weather app server.
+ *
+ * @param {string} name - The name of the city to be validated.
+ * @return {Promise<void>} - A promise that resolves when the validation is complete.
+ *
+ * @see {@link https://github.com/Lipcimn/weather-app-server}
+ */
+const cityValidation = async (name: string): Promise<City[]> => {
   const response = await axios.post(
     `http://localhost:${import.meta.env.VITE_SERVER_PORT}/post`,
     {
       cityName: name,
     }
   );
-  console.log(response.data);
+  return response.data;
 };
 
-export { cityNameInputConfirmation };
+export { cityNameInputConfirmation, cityValidation };

@@ -1,4 +1,4 @@
-interface City {
+export interface City {
   cityName: string;
   coord: {
     lon: number;
@@ -26,5 +26,3 @@ interface City {
     gust: number;
   };
 }
-
-export type { City };

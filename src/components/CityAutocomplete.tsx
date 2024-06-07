@@ -4,6 +4,11 @@ import { cityValidation } from "../hooks/handles";
 import { City } from "../types/City";
 import { sleep } from "../hooks/sleep";
 
+/**
+ * Renders a city autocomplete component that allows users to search for cities.
+ *
+ * @return {JSX.Element} The rendered city autocomplete component.
+ */
 export const CityAutocomplete = () => {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState<string>("");
@@ -25,7 +30,7 @@ export const CityAutocomplete = () => {
   }, [loading, input]);
   return (
     <Autocomplete
-      id="combo-box-demo"
+      id="city-autocomplete"
       options={options}
       noOptionsText="No options"
       sx={{ width: 300 }}
